@@ -43,8 +43,8 @@ A complete, production-ready Electron + React + Firebase desktop POS system with
 
 1. **Clone the repository**
    ```bash
-   git clone [<repository-url>](https://github.com/Viranya2006/POS-System)
-   cd ShopPOS
+   git clone https://github.com/Viranya2006/POS-System.git
+   cd ShopPOS-main
    ```
 
 2. **Install dependencies**
