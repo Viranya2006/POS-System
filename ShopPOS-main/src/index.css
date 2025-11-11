@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Glass morphism effects */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/20 rounded-2xl shadow-xl;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full hover:bg-gray-400 dark:hover:bg-gray-500;
+  }
+
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    .print-only {
+      display: block !important;
+    }
+    
+    body {
+      @apply text-black bg-white;
+    }
+    
+    .receipt-container {
+      @apply max-w-none w-full;
+    }
+  }
+
+  /* Thermal receipt styles */
+  .thermal-receipt {
+    width: 80mm;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  @media print {
+    .thermal-receipt {
+      width: 80mm !important;
+      font-size: 12px !important;
+    }
+  }
+
+  .thermal-receipt .header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .thermal-receipt .line-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px 0;
+  }
+
+  .thermal-receipt .separator {
+    border-top: 1px dashed #000;
+    margin: 5px 0;
+  }
+
+  .thermal-receipt .total {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  /* Animation utilities */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply bg-green-500 text-white;
+  }
+  
+  .status-offline {
+    @apply bg-red-500 text-white;
+  }
+  
+  .status-syncing {
+    @apply bg-yellow-500 text-white;
+  }
+
+  /* Barcode scanner input */
+  .barcode-input {
+    @apply font-mono text-lg tracking-wider;
+  }
+
+  /* Dashboard cards */
+  .dashboard-card {
+    @apply glass-card p-6 hover:shadow-2xl transition-all duration-300 hover:scale-105;
+  }
+
+  /* Sales grid */
+  .sales-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+
+  /* Inventory table */
+  .inventory-table {
+    @apply w-full border-collapse;
+  }
+  
+  .inventory-table th,
+  .inventory-table td {
+    @apply border border-gray-200 dark:border-gray-700 p-3 text-left;
+  }
+  
+  .inventory-table th {
+    @apply bg-gray-50 dark:bg-gray-800 font-semibold;
+  }
+
+  /* Form styles */
+  .form-section {
+    @apply space-y-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg;
+  }
+
+  .form-section-title {
+    @apply text-lg font-semibold mb-3 pb-2 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  /* Scanning overlay corner indicators */
+  .scan-corner {
+    @apply absolute w-6 h-6;
+  }
+  
+  .scan-corner-tl {
+    @apply top-0 left-0 border-t-4 border-l-4 border-red-500;
+  }
+  
+  .scan-corner-tr {
+    @apply top-0 right-0 border-t-4 border-r-4 border-red-500;
+  }
+  
+  .scan-corner-bl {
+    @apply bottom-0 left-0 border-b-4 border-l-4 border-red-500;
+  }
+  
+  .scan-corner-br {
+    @apply bottom-0 right-0 border-b-4 border-r-4 border-red-500;
+  }
+
+  /* Video display toggle */
+  .video-hidden {
+    display: none;
+  }
+
+  .video-visible {
+    display: block;
+  }
+
+  /* Chart bar utilities - width will be applied via inline style for dynamic data */
+  .chart-bar {
+    @apply h-2 rounded-full transition-all duration-500;
+  }
+
+  .chart-bar-sm {
+    @apply h-2;
+  }
+
+  .chart-bar-md {
+    @apply h-6;
+  }
+}
+
+/* Custom utilities for POS specific styling */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .gradient-success {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  }
+  
+  .gradient-warning {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+  }
+  
+  .gradient-danger {
+    background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+  }
+}
